@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% block content %}
+    {% include "block/header.html" %}
+    <div class="search_bar clearfix">
+        <a href="index.html" class="logo fl"><img src="/static/images/logo.png"></a>
+        <div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;提交订单</div>
+        <div class="search_con fr">
+            <input type="text" class="input_text fl" name="" placeholder="搜索商品">
+            <input type="button" class="input_btn fr" name="" value="搜索">
+        </div>
+    </div>
+
+    <h3 class="common_title">确认收货地址</h3>
+
+    <div class="common_list_con clearfix">
+        <dl>
+            <dt>寄送到：</dt>
+            <dd><input type="radio" name="" checked="">北京市 海淀区 东北旺西路8号中关村软件园 （李思 收） 182****7528</dd>
+        </dl>
+        <a href="user_center_site.html" class="edit_site">编辑收货地址</a>
+
+    </div>
+
+    <h3 class="common_title">支付方式</h3>
+    <div class="common_list_con clearfix">
+        <div class="pay_style_con clearfix">
+            <input type="radio" name="cash">
+            <label class="cash">货到付款</label>
+            <input type="radio" name="weixin">
+            <label class="weixin">微信支付</label>
+            <input type="radio" name="zhifubao" checked>
+            <label class="zhifubao"></label>
+            <input type="radio" name="bank">
+            <label class="bank">银行卡支付</label>
+        </div>
+    </div>
+    {% for i in upay_order %}
+        <h3 class="common_title pay_order"><input type="checkbox" checked
+                                                  onclick="refresh()">订单:<em>{{ i.order_number }}</em><strong
+                style="float:right">共计:<em class="order_money"></em>元</strong></h3>
+
+        <div class="common_list_con clearfix">
+            <ul class="goods_list_th clearfix">
+                <li class="col01">商品名称</li>
+                <li class="col02">商品单位</li>
+                <li class="col03">商品价格</li>
+                <li class="col04">数量</li>
+                <li class="col05">小计</li>
+            </ul>
+            {% for g in i.orderinfo_set.all %}
+                <ul class="goods_list_td clearfix" id="{{ g.goods.id }}">
+                    <li class="col01">{{ forloop.counter }}</li>
+                    <li class="col02"><img src="/static/{{ g.goods.goods_picture }}"></li>
+                    <li class="col03">{{ g.goods.goods_name }}</li>
+                    <li class="col04">500g</li>
+                    <li class="col05">{{ g.goods.goods_price }}元</li>
+                    <li class="col06">{{ g.goods_count }}</li>
+                    <li class="col07"></li>
+                </ul>
+            {% endfor %}
+        </div>
+    {% endfor %}
+    <h3 class="common_title">总金额结算</h3>
+
+    <div class="common_list_con clearfix">
+        <div class="settle_con">
+            <div class="total_goods_count">共<em>2</em>件订单，总金额<b></b></div>
+            <div class="transit">运费：<b>10元</b></div>
+            <div class="total_pay">实付款：<b></b></div>
+        </div>
+    </div>
+
+    <div class="order_submit clearfix">
+        <a href="javascript:;" id="order_btn">提交订单</a>
+    </div>
+
+{% endblock %}
+{% block other_footer %}
+    <div class="popup_con">
+        <div class="popup">
+            <p>订单提交成功！</p>
+        </div>
+
+        <div class="mask"></div>
+    </div>
+    <script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+        $('#order_btn').click(function () {
+            localStorage.setItem('order_finish', 2);
+            commit_order()
+            $('.popup_con').fadeIn('fast', function () {
+
+                setTimeout(function () {
+                    $('.popup_con').fadeOut('fast', function () {
+                        //window.location.href = 'index.html';
+                    });
+                }, 3000)
+
+            });
+        });
+
+        function refresh() {
+            var el = document.getElementsByClassName("pay_order");
+            var order_money = document.getElementsByClassName("order_money");
+            var total_price = 0;
+            var count = 0;
+            for (i = 0; i < el.length; i++) {
+                var goods_list_td = el[i].nextElementSibling.getElementsByClassName("goods_list_td");
+                var total_order = 0;
+                for (j = 0; j < goods_list_td.length; j++) {
+                    var goods_price = goods_list_td[j].getElementsByClassName("col05")[0].innerText;
+                    var goods_count = goods_list_td[j].getElementsByClassName("col06")[0].innerText;
+                    var v = (parseFloat(goods_price) * parseFloat(goods_count)).toFixed(2);
+                    goods_list_td[j].getElementsByClassName("col07")[0].innerText = v + "元";
+                    total_order += parseFloat(v);
+                }
+                order_money[i].innerText = total_order.toFixed(2);
+                if (el[i].firstElementChild.checked == true) {
+                    total_price += total_order;
+                    count += 1;
+                }
+            }
+            var total_goods = document.getElementsByClassName("total_goods_count")[0];
+            total_goods.firstElementChild.innerHTML = count;
+            total_goods.lastElementChild.innerHTML = total_price.toFixed(2) + "元";
+            var transit_money = parseFloat(total_goods.nextElementSibling.firstElementChild.innerText);
+            total_goods.nextElementSibling.nextElementSibling.firstElementChild.innerHTML = (total_price + transit_money).toFixed(2) + "元";
+        }
+
+        refresh();
+
+        //收集商品和订单信息
+        function commit_order() {
+            refresh();
+            var el = document.getElementsByClassName("pay_order");
+            var data = new Array();
+
+
+            for (i = 0; i < el.length; i++) {
+                var order_list = {"order_number": "", "goods_list": []};
+                order_list["order_number"] = el[i].getElementsByTagName("em")[0].innerText;
+                var goods_list_td = el[i].nextElementSibling.getElementsByClassName("goods_list_td");
+                var goods_count = el[i].nextElementSibling.getElementsByClassName("col06");
+                for (j = 0; j < goods_list_td.length; j++) {
+                    var goods_list = {"id": "", "count": ""};
+                    goods_list["id"] = goods_list_td[j].id;
+                    goods_list["count"] = goods_count[j].innerText;
+                    order_list["goods_list"].push(goods_list);
+                }
+                data.push(order_list);
+            }
+            data = JSON.stringify(data);
+            var buyhttp = new XMLHttpRequest();
+            buyhttp.open("post", "", false);
+            buyhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            buyhttp.send("csrfmiddlewaretoken={{ csrf_token }}&data=" + data);
+            buyhttp.onreadystatechange = function () {
+                if (buyhttp.readyState == 4 && buyhttp.status == 200) {
+
+                }
+            }
+        }
+    </script>
+{% endblock %}

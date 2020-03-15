@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% include 'block/header.html' %}
+    {% include 'block/search.html' %}
+
+    <div class="navbar_con">
+        <div class="navbar clearfix">
+            <div class="subnav_con fl">
+                <h1>全部商品分类</h1>
+                <span></span>
+                <ul class="subnav">
+                    {% for i in goods_type %}
+                        <li>
+                            <a href="/buyer/list.html?type={{ i.type_description }}"
+                               class="{{ i.type_label }}">{{ i.type_description }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <ul class="navlist fl">
+                <li><a href="/buyer/index.html">首页</a></li>
+                <li class="interval">|</li>
+                <li><a href="">手机生鲜</a></li>
+                <li class="interval">|</li>
+                <li><a href="">抽奖</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="breadcrumb">
+        <a href="/buyer/index.html">全部分类</a>
+        <span>></span>
+        <a href="/buyer/list.html?type={{ this_type.type_description }}">{{ this_type.type_description }}</a>
+    </div>
+
+    <div class="main_wrap clearfix">
+        <div class="l_wrap fl clearfix">
+            <div class="new_goods">
+                <h3>新品推荐</h3>
+                <ul>
+                    {% for i in this_type.goods_set.all|slice:":2" %}
+                        <li>
+                            <a href="/buyer/detail.html?id={{ i.id }}"><img src="/static/{{ i.goods_picture }}"></a>
+                            <h4><a href="/buyer/detail.html?id={{ i.id }}">{{ i.goods_name }}</a></h4>
+                            <div class="prize">￥{{ i.goods_price }}</div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="r_wrap fr clearfix">
+            <div class="sort_bar">
+                <a href="#" class="active">默认</a>
+                <a href="#">价格</a>
+                <a href="#">人气</a>
+            </div>
+
+            <ul class="goods_type_list clearfix">
+                {% for i in this_type.goods_set.all %}
+                    <li>
+                        <a href="/buyer/detail.html?id={{ i.id }}"><img src="/static/{{ i.goods_picture }}"></a>
+                        <h4><a href="/buyer/detail.html?id={{ i.id }}">{{ i.goods_name }}</a></h4>
+                        <div class="operate">
+                            <span class="prize">￥{{ i.goods_price }}</span>
+                            <span class="unit">{{ i.goods_price }}/500g</span>
+                            <a href="javascript:;" class="add_goods" id="{{ i.id }}" onclick="cart_add(this)" title="加入购物车"></a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <div class="pagenation">
+                <a href="#">
+                    <上一页
+                </a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">下一页></a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block other_footer %}
+    <script>
+    function cart_add(obj){
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.open('put','/buyer/cart.html',true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xmlhttp.setRequestHeader("X-CSRFToken","{{ csrf_token }}");
+        xmlhttp.send("id="+obj.id);
+        xmlhttp.onreadystatechange=function () {
+            if (xmlhttp.readyState==4&&xmlhttp.status==200){
+                console.log(xmlhttp.responseText);
+            }
+        }
+    }
+    </script>
+{% endblock %}

@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'block/header.html' %}
+    {% include 'block/search.html' %}
+    <div class="navbar_con">
+        <div class="navbar clearfix">
+            <div class="subnav_con fl">
+                <h1>全部商品分类</h1>
+                <span></span>
+                <ul class="subnav">
+                    {% for i in goods_type %}
+                        <li><a href="/buyer/list.html?type={{ i.type_description }}"
+                               class="{{ i.type_label }}">{{ i.type_description }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <ul class="navlist fl">
+                <li><a href="/buyer/index.html">首页</a></li>
+                <li class="interval">|</li>
+                <li><a href="">手机生鲜</a></li>
+                <li class="interval">|</li>
+                <li><a href="">抽奖</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="breadcrumb">
+        <a href="/buyer/index.html">全部分类</a>
+        <span>></span>
+        <a href="/buyer/list.html?type={{ goods.goods_type.type_description }}">{{ goods.goods_type.type_description }}</a>
+        <span>></span>
+        <a href="/buyer/detail.html?id={{ goods.id }}">商品详情</a>
+    </div>
+
+    <div class="goods_detail_con clearfix">
+        <div class="goods_detail_pic fl"><img src="/static/{{ goods.goods_picture }}"></div>
+
+        <div class="goods_detail_list fr">
+            <h3>{{ goods.goods_name }}</h3>
+            <p>{{ goods.goods_description }}</p>
+            <div class="prize_bar">
+                <span class="show_pirze">¥<em>{{ goods.goods_price }}</em></span>
+                <span class="show_unit">单  位：500g</span>
+            </div>
+            <div class="goods_num clearfix">
+                <div class="num_name fl">数 量：</div>
+                <div class="num_add fl">
+                    <input type="text" class="num_show fl" value="1">
+                    <a href="javascript:;" onclick="goods_num('add')" class="add fr">+</a>
+                    <a href="javascript:;" onclick="goods_num('delete')" class="minus fr">-</a>
+                </div>
+            </div>
+            <div class="total">总价：<em>{{ goods.goods_price }}元</em></div>
+            <div class="operate_btn">
+                <a href="javascript:;" class="buy_btn">立即购买</a>
+                <a href="javascript:;" class="add_cart" id="{{ goods.id }}" onclick="add_cart(this)">加入购物车</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main_wrap clearfix">
+        <div class="l_wrap fl clearfix">
+            <div class="new_goods">
+                <h3>新品推荐</h3>
+                <ul>
+                    {% for i in goods.goods_type.goods_set.all|slice:":2" %}
+                        <li>
+                            <a href="/buyer/detail.html?id={{ i.id }}"><img src="/static/{{ i.goods_picture }}"></a>
+                            <h4><a href="/buyer/detail.html?id={{ i.id }}">{{ i.goods_name }}</a></h4>
+                            <div class="prize">￥{{ i.goods_price }}</div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="r_wrap fr clearfix">
+            <ul class="detail_tab clearfix">
+                <li class="active">商品介绍</li>
+                <li>评论</li>
+            </ul>
+
+            <div class="tab_content">
+                <dl>
+                    <dt>商品详情：</dt>
+                    <dd>草莓采摘园位于北京大兴区 庞各庄镇四各庄村
+                        ，每年1月-6月面向北京以及周围城市提供新鲜草莓采摘和精品礼盒装草莓，草莓品种多样丰富，个大香甜。所有草莓均严格按照有机标准培育，不使用任何化肥和农药。草莓在采摘期间免洗可以直接食用。欢迎喜欢草莓的市民前来采摘，也欢迎各大单位选购精品有机草莓礼盒，有机草莓礼盒是亲朋馈赠、福利送礼的最佳选择。
+                    </dd>
+                </dl>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block other_footer %}
+    <div class="add_jump"></div>
+
+    <script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+        var btn1 = document.getElementsByClassName("buy_btn")[0];
+        btn1.onclick = function () {
+            var num = document.getElementsByClassName("num_show")[0].value;
+            var btnhttp = new XMLHttpRequest();
+            btnhttp.open("post", "/buyer/cart.html", true);
+            btnhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            var data = JSON.stringify([{"id": "{{ goods.id }}", "num": num}]);
+            btnhttp.send("csrfmiddlewaretoken={{ csrf_token }}&data=" + data);
+            btnhttp.onreadystatechange = function btn() {
+                if (btnhttp.readyState == 4 && btnhttp.status == 200) {
+                    result = JSON.parse(btnhttp.responseText);
+                    window.location.href = result["url"];
+                }
+
+            }
+        }
+
+
+        var $add_x = $('#add_cart').offset().top;
+        var $add_y = $('#add_cart').offset().left;
+
+        var $to_x = $('#show_count').offset().top;
+        var $to_y = $('#show_count').offset().left;
+
+        $(".add_jump").css({'left': $add_y + 80, 'top': $add_x + 10, 'display': 'block'})
+        $('#add_cart').click(function () {
+            $(".add_jump").stop().animate({
+                    'left': $to_y + 7,
+                    'top': $to_x + 7
+                },
+                "fast", function () {
+                    $(".add_jump").fadeOut('fast', function () {
+                        $('#show_count').html(2);
+                    });
+
+                });
+        })
+
+        function goods_num(params) {
+            var goods_value = document.getElementsByClassName('num_show')[0];
+            var num = parseInt(goods_value.value)
+            if (params == 'add') {
+                goods_value.value = num + 1;
+            } else if (params == 'delete' && num > 0) {
+                goods_value.value = num - 1;
+
+            }
+            total = document.getElementsByClassName('total')[0].getElementsByTagName('em')[0];
+            price = document.getElementsByClassName('show_pirze')[0].getElementsByTagName('em')[0];
+            total.innerHTML = parseFloat(price.innerText) * goods_value.value + ' 元';
+        }
+
+        function add_cart(obj) {
+            var num = document.getElementsByClassName("num_show")[0].value;
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("put", "/buyer/cart.html", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+            xmlhttp.send("id=" + obj.id + "&num=" + num);
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    console.log(xmlhttp.responseText);
+                    window.location.href="/buyer/cart.html"
+                }
+            }
+        }
+
+
+    </script>
+{% endblock %}
