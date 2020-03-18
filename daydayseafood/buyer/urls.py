@@ -7,5 +7,6 @@ urlpatterns = [
     path('list.html', views.listpage),
     path('detail.html', views.detail),
     path('cart.html', views.cart),
-    path('place_order.html',views.place_order)
+    path('place_order.html',views.place_order),
+    path('alipay',views.alipay)
 ]

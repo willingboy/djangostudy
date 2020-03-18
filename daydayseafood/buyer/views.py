@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse
 from django.shortcuts import render
 
 from .models import *
@@ -149,12 +149,30 @@ def cart(request, user):
 
 @isbuyerlogin
 def place_order(request, user: LoginUser):
+    from buyer import other
+    import json
     if request.method == "POST":
-        pass
+        data = request.POST.get("data")
+        data = json.loads(data)[0]
+        order = other.Alipay()
+        url=order.orders(data,user)
+        print(url)
+        return HttpResponse(url)
+        # return HttpResponseRedirect("/index.html")
 
     params = {
         "page_title": "天天生鲜 - 结算",
         "user": user,
-        "upay_order": user.payorder_set.filter(order_status=1).all()
+        "upay_order": user.payorder_set.filter(order_status=1).last()
     }
     return render(request, 'place_order.html', params)
+
+
+def alipay(request):
+    print("==================================")
+    print("method:\n",request.method)
+    print("headers:\n",request.headers)
+    print("body:\n",request.body)
+    print("scheme:\n",request.scheme)
+    return HttpResponse("付款成功")
+

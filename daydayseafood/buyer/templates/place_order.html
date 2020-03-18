@@ -34,9 +34,9 @@
             <label class="bank">银行卡支付</label>
         </div>
     </div>
-    {% for i in upay_order %}
+{#    {% for i in upay_order %}#}
         <h3 class="common_title pay_order"><input type="checkbox" checked
-                                                  onclick="refresh()">订单:<em>{{ i.order_number }}</em><strong
+                                                  onclick="refresh()">订单:<em>{{ upay_order.order_number }}</em><strong
                 style="float:right">共计:<em class="order_money"></em>元</strong></h3>
 
         <div class="common_list_con clearfix">
@@ -47,7 +47,7 @@
                 <li class="col04">数量</li>
                 <li class="col05">小计</li>
             </ul>
-            {% for g in i.orderinfo_set.all %}
+            {% for g in upay_order.orderinfo_set.all %}
                 <ul class="goods_list_td clearfix" id="{{ g.goods.id }}">
                     <li class="col01">{{ forloop.counter }}</li>
                     <li class="col02"><img src="/static/{{ g.goods.goods_picture }}"></li>
@@ -59,7 +59,7 @@
                 </ul>
             {% endfor %}
         </div>
-    {% endfor %}
+{#    {% endfor %}#}
     <h3 class="common_title">总金额结算</h3>
 
     <div class="common_list_con clearfix">
@@ -151,11 +151,13 @@
             }
             data = JSON.stringify(data);
             var buyhttp = new XMLHttpRequest();
-            buyhttp.open("post", "", false);
+            buyhttp.open("post", "", true);
             buyhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             buyhttp.send("csrfmiddlewaretoken={{ csrf_token }}&data=" + data);
             buyhttp.onreadystatechange = function () {
                 if (buyhttp.readyState == 4 && buyhttp.status == 200) {
+                    console.log(buyhttp.responseText)
+                    window.location.href=buyhttp.responseText
 
                 }
             }
