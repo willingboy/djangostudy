@@ -45,14 +45,14 @@ class Alipay(object):
         for i in goods:
             money = i.goods_price * i.goods_count
             total_money += money
-
+        total_money += 10  # 运费
         self.model.out_trade_no = payorder.order_number
         self.model.total_amount = total_money
         self.model.subject = user.username
         self.model.body = json.dumps(data['goods_list'])
         self.model.product_code = "FAST_INSTANT_TRADE_PAY"
-        self.request.return_url = "http://127.0.0.1:8000/buyer/alipay"
-        self.request.notify_url = "http://127.0.0.1:8000/buyer/alipay"
+        self.request.return_url = "http://117.67.47.105:80/buyer/alipay"
+        self.request.notify_url = "http://117.67.47.105:80/buyer/alipay"
         return self.payurl()
 
 

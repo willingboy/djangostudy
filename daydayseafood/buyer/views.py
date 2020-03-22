@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect,HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 
 from .models import *
@@ -61,6 +61,11 @@ def detail(request, user):
                 'goods': goods,
                 'goods_type': GoodsType.objects.all()
             })
+            if LookHistory.objects.filter(user=user, goods_id=id).exists():
+                LookHistory.objects.filter(user=user, goods_id=id).delete()
+            if LookHistory.objects.filter(user=user).count() > 4:
+                LookHistory.objects.filter(user=user).first().delete()
+            LookHistory.objects.create(user=user, goods_id=id)
             return render(request, 'detail.html', params)
     return HttpResponseRedirect('/index.html')
 
@@ -68,7 +73,6 @@ def detail(request, user):
 @isbuyerlogin
 def cart(request, user):
     from django.http import JsonResponse, QueryDict
-    from uuid import uuid4
     from django.db.models import F
     import json, time
     result = {
@@ -81,11 +85,15 @@ def cart(request, user):
         print(data)
         if data:
             payorder = PayOrder()
-            payorder.order_number = str(uuid4()).upper()
+            user_site = UserSite.objects.filter(user=user, status=1).first()
+            if user_site:
+                payorder.order_address = f"{user_site.sitearea} ({user_site.username} 收) {user_site.phone}"
             payorder.order_date = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
             payorder.order_status = 1
             payorder.order_total = None
             payorder.order_user = user
+            payorder.save()
+            payorder.order_number = payorder.id + int(56000000)
             payorder.save()
             for i in data:
                 if i['id'] and i['num'] and Goods.objects.filter(id=i['id']).exists():
@@ -155,24 +163,80 @@ def place_order(request, user: LoginUser):
         data = request.POST.get("data")
         data = json.loads(data)[0]
         order = other.Alipay()
-        url=order.orders(data,user)
+        url = order.orders(data, user)
         print(url)
         return HttpResponse(url)
         # return HttpResponseRedirect("/index.html")
-
+    upay_order = user.payorder_set.filter(order_status=1).last()
+    user_site = UserSite.objects.filter(user=user, status=1).first()
+    upay_order.order_address = f"{user_site.sitearea} ({user_site.username} 收) {user_site.phone}"
+    upay_order.save()
     params = {
         "page_title": "天天生鲜 - 结算",
         "user": user,
-        "upay_order": user.payorder_set.filter(order_status=1).last()
+        "upay_order": upay_order
     }
     return render(request, 'place_order.html', params)
 
 
+@isbuyerlogin
+def user_center_site(request, user: LoginUser):
+    params = {
+        'page_title': '天天生鲜 - 地址管理',
+        'user': user
+    }
+    if request.method == "POST":
+        data = request.POST
+        username = data.get("username")
+        sitearea = data.get("sitearea")
+        code = data.get("code")
+        phone = data.get("phone")
+        if username and sitearea and code and phone:
+            if UserSite.objects.filter(user=user, status__in=[1, 2]).exists():
+                UserSite.objects.filter(user=user, status__in=[1, 2]).update(status=2)
+            UserSite.objects.create(user=user, username=username, sitearea=sitearea, code=code, phone=phone)
+    elif request.method == "GET":
+        id = request.GET.get("id")
+        if id and UserSite.objects.filter(user=user, id=id).exists():
+            UserSite.objects.filter(user=user, status=1).update(status=2)
+            UserSite.objects.filter(user=user, id=id).update(status=1)
+    cur_usersite = UserSite.objects.filter(user=user, status=1).first()
+    his_usersite = UserSite.objects.filter(user=user, status=2).all()
+    params.update(
+        {
+            'cur_usersite': cur_usersite,
+            'his_usersite': his_usersite
+        }
+    )
+    return render(request, "user_center_site.html", params)
+
+
+@isbuyerlogin
+def user_center_info(request, user: LoginUser):
+    params = {
+        'page_title': '天天生鲜 - 用户信息',
+        'user': user,
+        'cur_usersite': user.usersite_set.filter(status=1).first(),
+        'look_history': user.lookhistory_set.order_by("-datatime").all()
+    }
+    return render(request, "user_center_info.html", params)
+
+
+@isbuyerlogin
+def user_center_order(request, user: LoginUser):
+    params = {
+        'page_title': '天天生鲜 - 订单中心',
+        'user': user,
+        'order': user.payorder_set.all()
+    }
+    return render(request=request, template_name="user_center_order.html", context=params)
+
+
 def alipay(request):
     print("==================================")
-    print("method:\n",request.method)
-    print("headers:\n",request.headers)
-    print("body:\n",request.body)
-    print("scheme:\n",request.scheme)
+    print("method:\n", request.method)
+    print("headers:\n", request.headers)
+    print("body:\n", request.body)
+    print("scheme:\n", request.scheme)
+    print('remote_addr',request.META.get("REMOTE_ADDR"))
     return HttpResponse("付款成功")
-

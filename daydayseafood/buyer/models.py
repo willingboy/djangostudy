@@ -31,7 +31,7 @@ ORDER_STATUS = (
 # 订单模型
 ##############################
 class PayOrder(models.Model):
-    order_number = models.CharField(max_length=36, unique=True, verbose_name="订单号")
+    order_number = models.CharField(max_length=8, null=True, verbose_name="订单号")
     order_date = models.DateField(auto_now=True, verbose_name="订单创建时间")
     order_status = models.IntegerField(choices=ORDER_STATUS, verbose_name="订单状态")
     order_address = models.CharField(max_length=1024, verbose_name="送货地址")
@@ -54,3 +54,37 @@ class OrderInfo(models.Model):
 
     class Meta:
         db_table = "order_info"
+
+
+USERSITE_STATUS = (
+    (1, "默认地址"),
+    (2, "历史地址"),
+    (3, "禁用地址")
+)
+
+
+##############################
+# 用户地址管理
+##############################
+class UserSite(models.Model):
+    user = models.ForeignKey(to=LoginUser, on_delete=models.CASCADE, verbose_name="用户")
+    username = models.CharField(max_length=32, verbose_name="收货人")
+    sitearea = models.TextField(verbose_name="收货地址")
+    code = models.CharField(max_length=8, verbose_name="邮政编码")
+    phone = models.CharField(max_length=11, verbose_name="电话号码")
+    status = models.IntegerField(choices=USERSITE_STATUS, default=1, verbose_name="地址状态")
+
+    class Meta:
+        db_table = "user_site"
+
+
+##############################
+# 最近浏览记录每个用户保存5条记录
+##############################
+class LookHistory(models.Model):
+    user = models.ForeignKey(to=LoginUser, on_delete=models.CASCADE, verbose_name="浏览用户")
+    goods = models.ForeignKey(to=Goods, on_delete=models.CASCADE, verbose_name="浏览商品")
+    datatime = models.DateTimeField(auto_now=True, verbose_name="浏览时间")
+
+    class Meta:
+        db_table = "look_history"

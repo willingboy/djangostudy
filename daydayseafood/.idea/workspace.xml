@@ -2,24 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a563328e-2958-4ed2-91cd-1d5e8ad5c8a3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/buyer/other.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/buyer/templates/user_center_site.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../demo/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../demo/templates/courses/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../demo/templates/courses/reports.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../demo/templates/courses/show.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../demo/templates/courses/show2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test/sqlalchemytest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Qshop/static/goodsimages/goodstype/banner01.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Qshop/static/goodsimages/goodstype/banner02.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Qshop/static/goodsimages/goodstype/banner03.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Qshop/static/goodsimages/goodstype/banner04.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Qshop/static/goodsimages/goodstype/banner05.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Qshop/static/goodsimages/goodstype/banner06.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/f15de860-f62f-420e-90ba-b19e5216ead2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f15de860-f62f-420e-90ba-b19e5216ead2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/daydayseafood.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/daydayseafood.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyer/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/buyer/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyer/other.py" beforeDir="false" afterPath="$PROJECT_DIR$/buyer/other.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/buyer/templates/place_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/buyer/templates/place_order.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyer/templates/user_center_site.html" beforeDir="false" afterPath="$PROJECT_DIR$/buyer/templates/user_center_site.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/buyer/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/buyer/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/buyer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/buyer/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/daydayseafood/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/daydayseafood/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daydayseafood/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/daydayseafood/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../demo/.idea/dataSources/358cd2aa-ee48-4074-9785-4401d2cbe2c4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/.idea/dataSources/358cd2aa-ee48-4074-9785-4401d2cbe2c4.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../demo/.idea/demo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/.idea/demo.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../demo/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/.idea/misc.xml" afterDir="false" />
@@ -28,6 +28,9 @@
       <change beforePath="$PROJECT_DIR$/../demo/demo/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/demo/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../demo/demo/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/demo/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../demo/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/templates/courses/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/templates/courses/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../demo/templates/courses/reports.html" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/templates/courses/reports.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test/sqlalchemytest.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,14 +102,15 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/buyer/templates" />
+      <recent name="$PROJECT_DIR$/buyer" />
+      <recent name="$PROJECT_DIR$/static" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/static/img/goods" />
       <recent name="$PROJECT_DIR$/static/img/user" />
       <recent name="$PROJECT_DIR$/static/img/goodstype" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/buyer/templates" />
-      <recent name="$PROJECT_DIR$/static" />
     </key>
   </component>
   <component name="RunManager">
@@ -167,6 +171,11 @@
       <workItem from="1584324227106" duration="3256000" />
       <workItem from="1584364589174" duration="27724000" />
       <workItem from="1584512776204" duration="6710000" />
+      <workItem from="1584566317406" duration="136000" />
+      <workItem from="1584727381078" duration="850000" />
+      <workItem from="1584730553980" duration="539000" />
+      <workItem from="1584751664635" duration="29658000" />
+      <workItem from="1584862056400" duration="618000" />
     </task>
     <servers />
   </component>
@@ -174,10 +183,18 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="240" y="43" key="#Notifications" timestamp="1584820946540">
+      <screen x="0" y="23" width="1280" height="709" />
+    </state>
+    <state x="240" y="43" key="#Notifications/0.23.1280.709@0.23.1280.709" timestamp="1584820946540" />
     <state x="104" y="23" width="1071" height="709" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584137947235">
       <screen x="0" y="23" width="1280" height="709" />
     </state>
     <state x="104" y="23" width="1071" height="709" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1280.709@0.23.1280.709" timestamp="1584137947235" />
+    <state x="62" y="23" key="CommitChangelistDialog2" timestamp="1584833161565">
+      <screen x="0" y="23" width="1280" height="709" />
+    </state>
+    <state x="62" y="23" key="CommitChangelistDialog2/0.23.1280.709@0.23.1280.709" timestamp="1584833161565" />
     <state x="394" y="149" key="EnvironmentVariablesDialog" timestamp="1583868369070">
       <screen x="0" y="23" width="1280" height="709" />
     </state>
@@ -186,33 +203,37 @@
       <screen x="0" y="23" width="1280" height="709" />
     </state>
     <state x="427" y="139" key="FileChooserDialogImpl/0.23.1280.709@0.23.1280.709" timestamp="1584324306839" />
-    <state width="861" height="176" key="GridCell.Tab.0.bottom" timestamp="1584565860997">
+    <state width="987" height="92" key="GridCell.Tab.0.bottom" timestamp="1584844922406">
       <screen x="0" y="23" width="1280" height="709" />
     </state>
-    <state width="861" height="176" key="GridCell.Tab.0.bottom/0.23.1280.709@0.23.1280.709" timestamp="1584565860997" />
+    <state width="987" height="92" key="GridCell.Tab.0.bottom/0.23.1280.709@0.23.1280.709" timestamp="1584844922406" />
     <state width="1238" height="160" key="GridCell.Tab.0.bottom/0.23.1280.710@0.23.1280.710" timestamp="1584333627368" />
-    <state width="861" height="176" key="GridCell.Tab.0.center" timestamp="1584565860996">
+    <state width="987" height="92" key="GridCell.Tab.0.center" timestamp="1584844922405">
       <screen x="0" y="23" width="1280" height="709" />
     </state>
-    <state width="861" height="176" key="GridCell.Tab.0.center/0.23.1280.709@0.23.1280.709" timestamp="1584565860996" />
+    <state width="987" height="92" key="GridCell.Tab.0.center/0.23.1280.709@0.23.1280.709" timestamp="1584844922405" />
     <state width="1238" height="160" key="GridCell.Tab.0.center/0.23.1280.710@0.23.1280.710" timestamp="1584333627367" />
-    <state width="861" height="176" key="GridCell.Tab.0.left" timestamp="1584565860995">
+    <state width="987" height="92" key="GridCell.Tab.0.left" timestamp="1584844922405">
       <screen x="0" y="23" width="1280" height="709" />
     </state>
-    <state width="861" height="176" key="GridCell.Tab.0.left/0.23.1280.709@0.23.1280.709" timestamp="1584565860995" />
+    <state width="987" height="92" key="GridCell.Tab.0.left/0.23.1280.709@0.23.1280.709" timestamp="1584844922405" />
     <state width="1238" height="160" key="GridCell.Tab.0.left/0.23.1280.710@0.23.1280.710" timestamp="1584333627367" />
-    <state width="861" height="176" key="GridCell.Tab.0.right" timestamp="1584565860996">
+    <state width="987" height="92" key="GridCell.Tab.0.right" timestamp="1584844922405">
       <screen x="0" y="23" width="1280" height="709" />
     </state>
-    <state width="861" height="176" key="GridCell.Tab.0.right/0.23.1280.709@0.23.1280.709" timestamp="1584565860996" />
+    <state width="987" height="92" key="GridCell.Tab.0.right/0.23.1280.709@0.23.1280.709" timestamp="1584844922405" />
     <state width="1238" height="160" key="GridCell.Tab.0.right/0.23.1280.710@0.23.1280.710" timestamp="1584333627368" />
-    <state x="141" y="23" width="997" height="709" key="SettingsEditor" timestamp="1584324325455">
+    <state x="141" y="23" width="997" height="709" key="SettingsEditor" timestamp="1584777436182">
       <screen x="0" y="23" width="1280" height="709" />
     </state>
-    <state x="141" y="23" width="997" height="709" key="SettingsEditor/0.23.1280.709@0.23.1280.709" timestamp="1584324325455" />
-    <state x="317" y="210" key="com.intellij.ide.util.TipDialog" timestamp="1583868289509">
+    <state x="141" y="23" width="997" height="709" key="SettingsEditor/0.23.1280.709@0.23.1280.709" timestamp="1584777436182" />
+    <state x="317" y="210" key="com.intellij.ide.util.TipDialog" timestamp="1584751665024">
       <screen x="0" y="23" width="1280" height="709" />
     </state>
-    <state x="317" y="210" key="com.intellij.ide.util.TipDialog/0.23.1280.709@0.23.1280.709" timestamp="1583868289509" />
+    <state x="317" y="210" key="com.intellij.ide.util.TipDialog/0.23.1280.709@0.23.1280.709" timestamp="1584751665024" />
+    <state x="401" y="359" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584833134504">
+      <screen x="0" y="23" width="1280" height="709" />
+    </state>
+    <state x="401" y="359" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1280.709@0.23.1280.709" timestamp="1584833134504" />
   </component>
 </project>

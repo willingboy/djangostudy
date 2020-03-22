@@ -65,5 +65,6 @@ def login(request):
     flag = request.session.get("email")
     if flag:
         request.session.flush()
+        request.session.delete()
         response.delete_cookie('email')
     return response

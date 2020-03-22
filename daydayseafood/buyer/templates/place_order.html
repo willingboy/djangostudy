@@ -15,7 +15,7 @@
     <div class="common_list_con clearfix">
         <dl>
             <dt>寄送到：</dt>
-            <dd><input type="radio" name="" checked="">北京市 海淀区 东北旺西路8号中关村软件园 （李思 收） 182****7528</dd>
+            <dd><input type="radio" name="" checked="">{{ upay_order.order_address }}</dd>
         </dl>
         <a href="user_center_site.html" class="edit_site">编辑收货地址</a>
 
@@ -34,7 +34,6 @@
             <label class="bank">银行卡支付</label>
         </div>
     </div>
-{#    {% for i in upay_order %}#}
         <h3 class="common_title pay_order"><input type="checkbox" checked
                                                   onclick="refresh()">订单:<em>{{ upay_order.order_number }}</em><strong
                 style="float:right">共计:<em class="order_money"></em>元</strong></h3>
@@ -59,7 +58,6 @@
                 </ul>
             {% endfor %}
         </div>
-{#    {% endfor %}#}
     <h3 class="common_title">总金额结算</h3>
 
     <div class="common_list_con clearfix">

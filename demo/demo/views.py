@@ -6,9 +6,12 @@ from demo.models import *
 def index():
     return render_template("index.html")
 
+def courses_index():
+    return render_template("courses/index.html")
 
-def dbtest():
-    roles = Role.query.all()
-    for i in roles:
-        print(i.r_name)
-    return "测试数据库"
+
+# def dbtest():
+#     roles = Role.query.all()
+#     for i in roles:
+#         print(i.r_name)
+#     return "测试数据库"

@@ -9,7 +9,8 @@ def path(url_view: dict):
 
 urlpatterns = {
     "/": views.index,
-    "/dbtest/": views.dbtest
+    "/index.html": views.index,
+    "/courses/index.html": views.courses_index,
 }
 
 path(url_view=urlpatterns)
