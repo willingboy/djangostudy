@@ -2,35 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a563328e-2958-4ed2-91cd-1d5e8ad5c8a3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Qshop/static/goodsimages/goodstype/banner01.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Qshop/static/goodsimages/goodstype/banner02.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Qshop/static/goodsimages/goodstype/banner03.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Qshop/static/goodsimages/goodstype/banner04.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Qshop/static/goodsimages/goodstype/banner05.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Qshop/static/goodsimages/goodstype/banner06.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f15de860-f62f-420e-90ba-b19e5216ead2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f15de860-f62f-420e-90ba-b19e5216ead2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buyer/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/buyer/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buyer/other.py" beforeDir="false" afterPath="$PROJECT_DIR$/buyer/other.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buyer/templates/place_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/buyer/templates/place_order.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buyer/templates/user_center_site.html" beforeDir="false" afterPath="$PROJECT_DIR$/buyer/templates/user_center_site.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buyer/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/buyer/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buyer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/buyer/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/daydayseafood/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/daydayseafood/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/daydayseafood/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/daydayseafood/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../demo/.idea/dataSources/358cd2aa-ee48-4074-9785-4401d2cbe2c4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/.idea/dataSources/358cd2aa-ee48-4074-9785-4401d2cbe2c4.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../demo/.idea/demo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/.idea/demo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../demo/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../demo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../demo/demo/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/demo/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../demo/demo/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/demo/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../demo/demo/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/demo/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../demo/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../demo/templates/courses/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/templates/courses/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../demo/templates/courses/reports.html" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/templates/courses/reports.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test/sqlalchemytest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../flaskdaydayseafood/Qshop/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../flaskdaydayseafood/buyer/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../flaskdaydayseafood/buyer/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../flaskdaydayseafood/manage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../flaskdaydayseafood/seller/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../flaskdaydayseafood/seller/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../flaskdaydayseafood/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../flaskdaydayseafood/static/css/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../flaskdaydayseafood/static/css/reset.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +155,7 @@
       <workItem from="1584727381078" duration="850000" />
       <workItem from="1584730553980" duration="539000" />
       <workItem from="1584751664635" duration="29658000" />
-      <workItem from="1584862056400" duration="618000" />
+      <workItem from="1584862056400" duration="882000" />
     </task>
     <servers />
   </component>
